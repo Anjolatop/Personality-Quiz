@@ -1,0 +1,105 @@
+fruit_personalities = {
+    'Orange': "Kindness and compassion are your middle names! You're always ready to help out; and you believe in doing the right thing while staying flexible. You're the peacemaker; the one who brings people together.",
+    'Pear': "You're practical down-to-earth and always see things as they are. Your honesty and level-headedness are valued by your friends and they know they can good advice from you.",
+    'Apple': "You're the epitome of principle and honesty! Rules are your jam; and doing the right thing is your superpower; even when it's tough.",
+    'Pineapple': "Confident stylish and always ahead of the curve. A bit prickly on the outside but your unique personality and bold fashion sense make you a trendsetter.",
+    'Grape': "Big-hearted and easygoing always willing to go with the flow. You rock the slow and steady and your calm demeanor and gentle nature make you a reliable friend.",
+    'Pomegranate' : "Eccentric imaginative and always marches to the beat of your own drum. Your unique perspective and creative spirit make you fascinating.",
+    'Lemon': "Free spirit; adventurer; life of the party - that's you; Lemon! You follow your own path and live life to the fullest. You're creative; inspiring; and always up for trying something new.",
+    'Coconut': "Independent; unpredictable; and marching to your own beat - you're the Coconut! You do what you want; when you want; and rules are more like guidelines. You're creative; inspiring; and always up for something new.",
+    'Dragon Fruit': "You're a bit wild and unpredictable; Dragon Fruit. You're firey and you do what you want; when you want. You're strong-willed and not afraid to break the mold."
+}
+
+questions = [
+    {'text': "How often do you wash your sheets?",
+     'answer_options': [
+            {'text': "1. Once a week", 'fruits': ["Pineapple", "Apple"]},
+            {'text': "2. About once a month", 'fruits': ["Orange", "Pear"]},
+            {'text': "3. When they smell", 'fruits': ["Lemon", "Orange"]}
+      ]
+    },
+    {'text': "How do you listen to music?",
+     'answer_options': [
+            {'text': "1. Spotify", 'fruits': ["Orange", "Apple"]},
+            {'text': "2. Radio CDs or Vinyl", 'fruits': ["Grape", "Pomegranate"]},
+            {'text': "3. A different streaming platform", 'fruits': ["Lemon", "Coconut", "Dragon Fruit"]}
+      ]
+    },
+    {'text': "What do you like for breakfast?",
+     'answer_options': [
+            {'text': "1. Sweet", 'fruits': ["Grape", "Pineapple"]},
+            {'text': "2. Savory", 'fruits': ["Pear", "Apple"]},
+            {'text': "3. Nothing (I skip breakfast)", 'fruits': ["Pomegranate", "Coconut", "Dragon Fruit"]}
+      ]
+    },
+    {'text': "Truth or dare?",
+     'answer_options': [
+            {'text': "1. Truth", 'fruits': ["Coconut", "Lemon"]},
+            {'text': "2. Dare", 'fruits': ["Dragon Fruit", "Pineapple"]},
+            {'text': "3. I do not play that game", 'fruits': ["Pomegranate"]}
+      ]
+    },
+]
+
+personality_counts = {
+    "Orange": 0,
+    "Pear": 0,
+    "Apple": 0,
+    "Pineapple": 0,
+    "Grape": 0,
+    "Pomegranate": 0,
+    "Lemon": 0,
+    "Coconut": 0,
+    "Dragon Fruit": 0
+};
+
+def intro():
+    print("Welcome! Answer these questions to learn what type of Fruit you are!")
+    name = input("Before you start, what should I call you?\n")
+    print(f"Great, nice to meet you {name}. Let's get started!")
+    return name
+
+
+def ask_questions():
+    # Put your code here.
+    persons_option = []
+    for question in range(len(questions)):
+      print(questions[question]['text'])
+      for answers in range(len((questions[question]['answer_options']))):
+       print(questions[question]['answer_options'][answers]['text'])
+      answer = int(input("1, 2, or 3? "))
+      answer -= 1
+      questions[question]['answer_options']
+      persons_option = questions[question]['answer_options'][answer]['fruits']
+      for fruit in persons_option:
+        personality_counts[fruit] += 1
+
+     
+
+
+
+
+def diagnose(name):
+    print(f"\nThank you for playing today, {name}!\n")
+    print("Here is my diagnosis:\n")
+
+    max_count = 0
+    max_fruit = ''
+
+    for fruit, count in personality_counts.items():
+        if (count > max_count):
+            max_count = count;
+            max_fruit = fruit;
+
+    print(f"You are a {max_fruit}!\n")
+    print(f"Description: {fruit_personalities[max_fruit]}\n")
+
+
+def main():
+    name = intro()
+    ask_questions()
+    diagnose(name)
+
+
+if __name__ == "__main__":
+    main()
